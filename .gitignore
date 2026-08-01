@@ -1,0 +1,5 @@
+sfbay_fine/
+figures/
+__pycache__/
+*.npz
+*.npy
