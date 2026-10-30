@@ -1,0 +1,67 @@
+{
+ "fig_cost.py": {
+  "inputs": {
+   "paper/cc_cost.json": "e1fa94106be837cb955870b23407cbd6c069a8e01ff6b9159c646af4523224ee",
+   "paper/timing_benchmark.json": "d7c71d2cc171f027c8dc596ca70ba2e17e38d3f04eedd4d0bb51d704c0e12b4d"
+  },
+  "outputs": {
+   "fig_rev_cost.pdf": "dc80d1685118dd8b673f05f0395cdb965bb39d78f9d0590448fc68a3e8a9d8e6",
+   "fig_rev_cost.png": "70ec2386c648baffadb18545495d224d94256abe11de4d678bc95cd09449a0f0"
+  }
+ },
+ "fig_wavenumber.py": {
+  "inputs": {},
+  "outputs": {
+   "fig1_wavenumber_analysis.pdf": "e53fdb6b1658b6b85e8a955f28ea16010e7e15934670533aa2796d6866cd5903",
+   "fig1_wavenumber_analysis.png": "4c368f6a729dd0e49d991ea364b96588a6c6de41bd7783832413b16dc7d9def4"
+  }
+ },
+ "gen_revision_figures.py": {
+  "inputs": {
+   "_dev/sfbay_fine/fluxes_mixed.npz": "2146ba1f9b20694aa614faeb7d670b4a28be22deaea8faec9118b1dbae991eba",
+   "paper/cc_results.json": "917e6d39785f9d6b7717398d01447409f7e858d919c6e1e5d0f26b23d7d980df",
+   "paper/cfl_sweep_cv.json": "3801b9d8d88007d609809c6a57e42f82d67068f1997e88dd1c1085826954d4c4",
+   "paper/cv_results.json": "622e55de0da25fd65c1a501bbcd8b3033d19e0d6c29c78e4abe0b72c3a75c644",
+   "paper/order_513.json": "d4579b88d6066693aa2a1ea935a87cb9bee7d2af66a9f15fbb187dda66aedf50",
+   "paper/sfbay_table.json": "a18c7be64cd915c465b6e38f47ddf6689887a16578bc8039c3f0d27166169c82",
+   "paper/sfbay_table_ccfctg.npy": "036418dd7afa26e53b04734fd1c9a085ff87db94c1ed379275b105eca58217ca",
+   "paper/sfbay_table_ccompact_d.npy": "5c25c4f209ea1e9e7a27fd7b850d869a849998754e18e759890307fc0deb2ed7",
+   "paper/sfbay_table_donor.npy": "e0aa3308591ce32beee91240a25f73160c86ffef1d8c3ec53b84eca953d66f4f"
+  },
+  "outputs": {
+   "fig_rev_cfl.pdf": "9658c7148049f684b3ff1bc6b6c8f528340e55b8fcaee8623cca80c0dee5b3ed",
+   "fig_rev_cfl.png": "7e315f3d7082faff8bd8b4565f7dfda146e26ccc2ca9cc81eb14802043aee5fb",
+   "fig_rev_convergence.pdf": "badaabbb2a0570fc6a690c3d80fb81221aa04dec15a8af59ed47f5d147d9477e",
+   "fig_rev_convergence.png": "e73c2a832e6713226fdfd1a5df5fa60b4a9247636f8661dfe6c2677487d6dd0d",
+   "fig_rev_sfbay.pdf": "ff3f60e0674a5709ace13bf8a80d686c42262a63981040f7b23afd4143851747",
+   "fig_rev_sfbay.png": "bb06013c4ab2088277f68cf16dcaef180b0bf8ef236e8d4120c954d3d18737a3",
+   "fig_rev_slotted.pdf": "ca6cf51b6bd5032d85c5d937feba66354866e0c147ef46a181ec35de6da3a1ac",
+   "fig_rev_slotted.png": "d2c35189494c29da137123b05c4e5fc2d0e512157a30907070efb917b946da96"
+  }
+ },
+ "sfbay_currents_fig.py": {
+  "inputs": {
+   "_dev/sfbay_fine/sfbay_stations.npz": "6c8da9dcf837b8cf24a7d7c7f686654ad57a850dfb8307a768b9a2ebffec012d"
+  },
+  "outputs": {
+   "fig_sfbay_currents.png": "3735798dc48efb8e9ecd4c6e20938e0d8bc7211528ad1c62d9cf282de95e6642"
+  }
+ },
+ "sfbay_domain.py": {
+  "inputs": {
+   "_dev/sfbay_fine/currents_fine.npz": "2356c87e7759da409333bbab6dfc30bb2589fb7978f7a1c6df9bf45848f94c59",
+   "_dev/sfbay_fine/sfbay_fine.npz": "a9db385ad6973df60391c7ac77d2f9bd4a4057c192b0fe299350148462b29ee7"
+  },
+  "outputs": {
+   "fig_sfbay_domain.png": "11a03282334ba945dc50add0b7ca0070b012c52cbc0251d5a8d0dc314ab1350d"
+  }
+ },
+ "sfbay_tides_fig.py": {
+  "inputs": {
+   "_dev/sfbay_fine/sfbay_tides.npz": "dc2a411a82895b3cd5b339ff487303aed98e25da75031e91fa24b2d06fc3b322"
+  },
+  "outputs": {
+   "fig_sfbay_tide.png": "bb885e0f7b153cf29535eaa4ee1f84b3a256d0899b40a69ff2339e4a54b7dd0b"
+  }
+ }
+}

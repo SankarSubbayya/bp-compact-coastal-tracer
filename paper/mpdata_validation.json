@@ -1,0 +1,66 @@
+{
+ "N65_passes1_basic": {
+  "max_abs_diff": 2.220446049250313e-16,
+  "rel_diff": 9.42238112306226e-16,
+  "steps": 200,
+  "max_courant": 0.4,
+  "ours_min": 0.0006485328978347815,
+  "pympdata_min": 0.0006485328978347817
+ },
+ "N65_passes1_nonosc": {
+  "max_abs_diff": 2.0816681711721685e-16,
+  "rel_diff": 8.968500687339677e-16,
+  "steps": 200,
+  "max_courant": 0.4,
+  "ours_min": 0.001,
+  "pympdata_min": 0.001
+ },
+ "N65_passes2_basic": {
+  "max_abs_diff": 4.440892098500626e-16,
+  "rel_diff": 1.5619570774720633e-15,
+  "steps": 200,
+  "max_courant": 0.4,
+  "ours_min": 0.00040178855537532633,
+  "pympdata_min": 0.0004017885553753266
+ },
+ "N65_passes2_nonosc": {
+  "max_abs_diff": 4.440892098500626e-16,
+  "rel_diff": 1.6002907110716852e-15,
+  "steps": 200,
+  "max_courant": 0.4,
+  "ours_min": 0.001,
+  "pympdata_min": 0.001
+ },
+ "N129_passes1_basic": {
+  "max_abs_diff": 7.771561172376096e-16,
+  "rel_diff": 1.1056876262242402e-15,
+  "steps": 200,
+  "max_courant": 0.4,
+  "ours_min": 0.0007932014339346868,
+  "pympdata_min": 0.0007932014339346868
+ },
+ "N129_passes1_nonosc": {
+  "max_abs_diff": 8.881784197001252e-16,
+  "rel_diff": 1.2741028060489744e-15,
+  "steps": 200,
+  "max_courant": 0.4,
+  "ours_min": 0.001,
+  "pympdata_min": 0.001
+ },
+ "N129_passes2_basic": {
+  "max_abs_diff": 1.4432899320127035e-15,
+  "rel_diff": 1.7693669775464889e-15,
+  "steps": 200,
+  "max_courant": 0.4,
+  "ours_min": 0.0005937767989123051,
+  "pympdata_min": 0.0005937767989123066
+ },
+ "N129_passes2_nonosc": {
+  "max_abs_diff": 1.3322676295501878e-15,
+  "rel_diff": 1.6321445690247193e-15,
+  "steps": 200,
+  "max_courant": 0.4,
+  "ours_min": 0.001,
+  "pympdata_min": 0.001
+ }
+}
