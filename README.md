@@ -40,7 +40,9 @@ The bathymetry is a subset of the NOAA NCEI Coastal Relief Model and the tidal c
 
 ## Versions
 
-- `v2.0.0-jcp` (this version): the package of the *Journal of Computational Physics* submission.
+- `v2.0.1-jcp` (this version): the package of the *Journal of Computational Physics* submission.
+- `v2.0.0-jcp`: the same package before the steep-shelf runs with the dissipation term and with a finer reference
+  quadrature (`steep_depth_dissip.json`, `shelf_reference_check.json`) and before the stricter slotted-cache check.
 - `v1-ocean-engineering-2026-08`: the earlier package of the *Ocean Engineering* submission (different layout).
 
 ## License

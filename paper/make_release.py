@@ -20,7 +20,7 @@ SCRIPTS = ["paths.py", "figure_provenance.py", "fetch_crm.py", "build_sfbay_fine
            "order_513.py", "fast_schemes.py", "timing_benchmark.py", "covariance_ablation.py", "correction_cost.py",
            "fig_cost.py", "changing_volume.py", "variable_depth.py", "depth_test.py",
            "rerun_depthaware.sh", "rerun_direct.sh", "rerun_timing.sh", "rerun_cc.sh", "rerun_cc_r3.sh", "chaplin_colella.py", "cc_validation.py",
-           "cc_benchmark.py", "cc_range.py", "steep_depth.py", "fast_cc.py", "cc_cost.py", "cc_sensitivity.py",
+           "cc_benchmark.py", "cc_range.py", "steep_depth.py", "shelf_reference_check.py", "fast_cc.py", "cc_cost.py", "cc_sensitivity.py",
            "make_cf.sh", "make_jcp.sh", "cf_package.py", "jcp_package.py", "make_release.py"]
 RESULTS = ["cv_results.json", "cfl_sweep_cv.json", "appendix_nodal.json", "recalibration_results.json", "sfbay_table.json",
            "bay_experiments.json", "coast_closure_check.json", "long_run.json", "wall_convergence.json",
@@ -29,7 +29,7 @@ RESULTS = ["cv_results.json", "cfl_sweep_cv.json", "appendix_nodal.json", "recal
            "covariance_ablation.json", "correction_cost.json", "changing_volume.json", "variable_depth.json",
            "depth_test.json", "cc_results.json", "cc_validation.json", "cc_range.json",
            "fluxes_mixed.log", "sfbay_table_donor.npy", "sfbay_table_ccfctg.npy", "sfbay_table_ccompact_d.npy",
-           "sfbay_table_ccfctg_ratio.npy", "steep_depth.json", "cc_cost.json",
+           "sfbay_table_ccfctg_ratio.npy", "steep_depth.json", "steep_depth_dissip.json", "shelf_reference_check.json", "cc_cost.json",
            "cc_sensitivity.json", "figure_inputs.json"]
 DOCS = ["manuscript_rev.tex", "manuscript_jcp.tex", "manuscript_jcp.pdf", "numbers.tex", "references.bib", "REPRODUCE.md"]
 DEV = ["advdiff.py", "sharp.py", "compact_stable.py", "bp_compact.py"]

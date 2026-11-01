@@ -462,6 +462,33 @@ assert int(macros["sdBA"]) <= 5
 assert all(sde("UFG", N) < sde("BCG", N) < sde("CFG", N) for N in SN), "text: on the shelf U5 < compact < C4 on every grid"
 put("sdGainUFG", f"{100 * (1 - sde('UFG', SN[-1]) / sde('BCG', SN[-1])):.0f}")
 put("sdRCFG", f"{sde('CFG', SN[-1]) / sde('BCG', SN[-1]):.1f}")
+# the dissipation term (15) on the shelf (steep_depth_dissip.json: steep_depth.py with schemes cfctg, u5fctg, cfctgd);
+# in the interior the U5 flux is the sixth-order centred flux plus that term
+SDD = J("steep_depth_dissip.json")
+assert all(SDD[k] == SD[k] for k in ("code", "dmin", "width", "t_end", "phi", "cv_subcells", "trajectory_steps"))
+DS = SDD["space"]
+assert sorted(DS, key=int) == SN
+assert all(DS[N][s]["rel_l2"] == SS[N][s]["rel_l2"] for N in SN for s in ("cfctg", "u5fctg")), \
+    "steep_depth_dissip.json repeats the runs of steep_depth.json exactly"
+assert all(DS[N]["cfctgd"]["min"] >= -1e-12 and DS[N]["cfctgd"]["max"] <= 1 + 1e-12
+           and abs(DS[N]["cfctgd"]["mass_rel"]) < 1e-14 for N in SN)
+sdd = lambda N: DS[N]["cfctgd"]["rel_l2"]
+assert all(sdd(N) < sde("UFG", N) for N in SN), "text: with (15) the compact scheme is more accurate than U5 on every grid"
+for g, N in zip("abc", SN):
+    put(f"sdD{g}", f"{sdd(N):#.3g}")
+    put(f"sdDU{g}", f"{100 * (1 - sdd(N) / sde('UFG', N)):.0f}")
+put("sdDGain", f"{100 * (1 - sdd(SN[-1]) / sde('BCG', SN[-1])):.0f}")
+# the 129^2 reference with 12 x 12 Gauss points per volume instead of the 16 x 16 midpoint rule (shelf_reference_check.py)
+QC = J("shelf_reference_check.json")
+assert QC["code"] == SD["code"] and str(QC["N"]) == SN[-1] and QC["trajectory_steps"] == SD["trajectory_steps"]
+assert QC["t_end"] == SD["t_end"] and QC["dt"] == SS[SN[-1]]["dt"]
+assert all(abs(QC["schemes"][s]["midpoint"] / DS[SN[-1]][s]["rel_l2"] - 1) < 1e-12 for s in QC["schemes"]), \
+    "the rerun reproduces steep_depth_dissip.json against the midpoint reference"
+qg = {s: v["gauss"] for s, v in QC["schemes"].items()}
+assert qg["cfctgd"] < qg["u5fctg"] < qg["cfctg"], "text: the ranking holds against the Gauss reference"
+assert all(f"{qg[s]:#.3g}" == f"{DS[SN[-1]][s]['rel_l2']:#.3g}" for s in qg), "text: unchanged to the digits shown"
+assert f"{100 * (1 - qg['cfctgd'] / qg['u5fctg']):.0f}" == macros["sdDUc"]
+put("sdQuad", up(QC["ref_change"], 1))
 sdo = [math.log2(sde(c, SN[-2]) / sde(c, SN[-1])) for c in VDC if c != "UCA"]
 assert max(sdo) < 1.5, "text: orders near one on the shelf, except the depth-aware unlimited flux"
 put("sdOrdMax", f"{max(sdo):.1f}")
@@ -624,6 +651,9 @@ body = ("\\begin{tabular}{lccc}\n\\toprule\nscheme & $33^2$ & $65^2$ & $129^2$\\
         + "$W/h$ & " + " & ".join(macros[f"sdWh{g}"] for g in "abc") + "\\\\\n\\midrule\n")
 for c in ("UCW", "UCA", "BCG", "BCA", "CFG", "UFG"):
     body += {**LABEL, **LABEL_DW}[c] + " & " + " & ".join(f"${macros[f'sd{c}{g}']}$" for g in "abc") + "\\\\\n"
+    if c == "BCA":
+        body += ("bounded compact, global, dissipation \\eqref{eq:dissip} & "
+                 + " & ".join(f"${macros[f'sdD{g}']}$" for g in "abc") + "\\\\\n")
 body += "\\bottomrule\n\\end{tabular}\n"; table("tab_steep.tex", body)
 body = "\\begin{tabular}{lccc}\n\\toprule\nscheme & $65^2$ & $129^2$ & $257^2$\\\\\n\\midrule\n"
 for c in rows_main:

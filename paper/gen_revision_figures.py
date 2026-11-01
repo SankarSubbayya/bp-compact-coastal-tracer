@@ -4,7 +4,7 @@ Reads cv_results.json, cfl_sweep_cv.json, sfbay_table.json and sfbay_table_*.npy
 fields once from control-volume averages (cached in figure_data/slotted_cv_129.npz). Writes PDF (for LaTeX) and PNG to
 figures/. Figures: (1) error vs grid size, (2) slotted cylinder at maximum deformation, (3) San Francisco Bay patch after
 five hours, (4) error vs the largest outflow fraction."""
-import json, os
+import json, os, zipfile
 import paths as P
 import numpy as np
 import matplotlib
@@ -101,12 +101,30 @@ c0 = CV.cv_average(g, M.slot_ic, 0.0, m=16); ref = CV.cv_average(g, M.slot_ic, M
 l2 = lambda F, k: M.score(F[k], ref, c0, g, 0.0)["rel_l2"]
 
 
+METRICS = ("rel_l2", "rel_l1", "min", "max", "mass_rel", "iou")
+
+
 def cache_ok():
-    """The cache holds this code version's fields on this grid, with this reference and the errors of cv_results.json."""
-    with np.load(cache) as F:
-        return (set(KEYS) <= set(F.files) and "code" in F.files and str(F["code"]) == CODE
-                and np.array_equal(F["edges"], g.e) and np.array_equal(F["exact"], ref)
-                and all(abs(l2(F, k) - R["slotted_T2"][str(NS)][k]["rel_l2"]) < 1e-12 for k in KEYS))
+    """The cache holds this code version's fields on this grid, with this reference, finite and of the grid's shape,
+    with the metrics of cv_results.json (relative L2 and L1 error, extrema, mass change, IoU); a missing entry or an
+    unreadable file also counts as stale."""
+    try:
+        with np.load(cache) as F:
+            if not (set(KEYS) | {"code", "edges", "exact"}) <= set(F.files) or str(F["code"]) != CODE:
+                return False
+            if not (np.array_equal(F["edges"], g.e) and np.array_equal(F["exact"], ref)):
+                return False
+            for k in KEYS:
+                if F[k].shape != ref.shape or not np.isfinite(F[k]).all():
+                    return False
+                d, j = M.score(F[k], ref, c0, g, 0.0), R["slotted_T2"][str(NS)][k]
+                a, b = F[k] > 0.5, ref > 0.5                                    # IoU on control volumes, as cv_reference
+                d["iou"] = float((a & b).sum() / max((a | b).sum(), 1))
+                if any(abs(d[q] - j[q]) > 1e-12 for q in METRICS):
+                    return False
+            return True
+    except (OSError, EOFError, ValueError, KeyError, zipfile.BadZipFile):
+        return False
 
 
 if os.path.exists(cache) and not cache_ok():                                    # checked on every run, also on reuse

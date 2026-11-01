@@ -1,0 +1,24 @@
+{
+ "N": 129,
+ "t_end": 0.5,
+ "midpoint_points": 16,
+ "gauss_points": 12,
+ "trajectory_steps": 1000,
+ "code": "afae53e9b026728d",
+ "dt": 0.00030945419212482605,
+ "ref_change": 4.300915107511962e-05,
+ "schemes": {
+  "cfctg": {
+   "midpoint": 0.04478120764779414,
+   "gauss": 0.04476490291701586
+  },
+  "u5fctg": {
+   "midpoint": 0.04021707931546743,
+   "gauss": 0.04018385734269778
+  },
+  "cfctgd": {
+   "midpoint": 0.03944981861205873,
+   "gauss": 0.039416232120313206
+  }
+ }
+}

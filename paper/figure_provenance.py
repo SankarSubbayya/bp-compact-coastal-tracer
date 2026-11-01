@@ -5,8 +5,9 @@ every input is unchanged and every figure is the file its script wrote. Kept apa
 the benchmark's code hash (cv_reference.code_hash).
 
 Not recorded: figure_data/slotted_cv_129.npz, the slotted-cylinder fields of gen_revision_figures.py, which that
-script checks on every run, also when it reuses them (code hash, grid, reference field and errors against
-cv_results.json to 1e-12), and recomputes when absent or when any check fails. OMITTED inputs are not in
+script checks on every run, also when it reuses them (code hash, grid, reference field, shapes, finite values, and
+the relative L2 and L1 errors, extrema, mass change and IoU against cv_results.json to 1e-12; an unreadable or
+incomplete file counts as stale), and recomputes when absent or when any check fails. OMITTED inputs are not in
 the release (step 3 of REPRODUCE.md regenerates them; MANIFEST.sha256 lists their checksums); check() compares them
 only when present."""
 import hashlib, json, os
