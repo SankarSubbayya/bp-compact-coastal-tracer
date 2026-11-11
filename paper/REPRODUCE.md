@@ -28,7 +28,7 @@ they were; Appendix A is produced by `appendix_nodal.py`.
 | 10d | `uniform_tracer_check.py`; `bay_checks.py` | `checks.json` (uniform tracer in the bay; station distances; fit-window sensitivity) | Secs. 5.4.2-5.4.3 |
 | 10f | `closure_spectra.py`; `covariance_test.py` | `closure_spectra.json`; `covariance_test.json` | Sec. 3.2 (closure stability; flux covariance) |
 | 10g | `order_513.py` (~1 h) | `order_513.json` | Sec. 5.2 (513^2 order) |
-| 10h | `timing_benchmark.py` (needs `--with numba`; compiled `fast_schemes.py`, validated against the NumPy schemes) | `timing_benchmark.json` | Sec. 5.5, Fig. cost |
+| 10h | `timing_benchmark.py` (needs `--with numba`; compiled `fast_schemes.py`, validated against the NumPy schemes) | `timing_benchmark.json` | Sec. 5.8, Fig. cost |
 | 10i | `covariance_ablation.py` (needs `--with numba`; ~40 min, caches references in figure_data/) | `covariance_ablation.json` | Sec. 5.2 (transverse correction) |
 | 10j | `correction_cost.py` (needs `--with numba`; after 10i) | `correction_cost.json` | Sec. 5.2 (cost of the correction) |
 | 10k | `changing_volume.py` (~40 min) | `changing_volume.json` (time-varying volumes; direct and depth-aware face values) | Sec. 5.4, Table moving |
@@ -40,7 +40,7 @@ they were; Appendix A is produced by `appendix_nodal.py`.
 | 10o | `cc_cost.py` (needs `--with numba`; compiled `fast_cc.py`, validated against `chaplin_colella.py`; single thread, load logged in `jcp6_runs.log`) | `cc_cost.json` (largest admissible steps; compiled timing at the benchmark step and at each scheme's largest admissible step) | Sec. 5.8 (cost) |
 | 11 | `fig_wavenumber.py` (Fig 1), `gen_revision_figures.py`, `fig_cost.py`, `sfbay_domain.py`, `sfbay_tides_fig.py`, `sfbay_currents_fig.py` (after every result step above) | `figures/`; `figure_inputs.json` (`figure_provenance.py`: SHA-256 of every declared input of each script and of every figure it wrote; `fluxes_mixed.npz` is compared only when present; the slotted-field cache in `figure_data/` is not recorded but checked by `gen_revision_figures.py` on every run) | figures |
 | 12 | `make_tables.py` (needs numpy: reads figure_data/gauss_m16_*.npz; after step 11: it refuses to run unless every figure script is recorded, its inputs are unchanged and its figures are the files it wrote) | `numbers.tex`, `tables/*.tex` | every number and results table |
-| 13 | `./make_jcp.sh` (JCP version from the master manuscript_rev.tex); `./make_cf.sh` (frozen C&F version in cf_version/); not in the deposited release, which ends with step 12 (`numbers.tex`, `tables/`, `figures/` are the generated inputs of the manuscript) | PDFs | manuscripts |
+| 13 | Manuscript build; not in the deposited release, which ends with step 12 (`numbers.tex`, `tables/`, `figures/` are the generated inputs of the manuscript) | PDF | manuscript |
 
 Scheme keys: cfctg / cfct = bounded compact (global / local bounds); cfctgd / cfctd = with the optional dissipation;
 ccompactd = unlimited compact with dissipation; mpdata3_no / mpdata_no = nonoscillatory MPDATA with two / one corrective
